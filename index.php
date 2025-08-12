@@ -31,58 +31,133 @@ include 'includes/header.php';
 
 <!-- Hero Section -->
 <section class="hero-section">
+    <!-- Animated Background -->
+    <div class="hero-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+        <div class="grid-overlay"></div>
+    </div>
+    
     <div class="container">
-        <div class="row align-items-center min-vh-75">
+        <div class="row align-items-center min-vh-100">
             <div class="col-lg-6">
                 <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-text">🚀 <?php echo getCurrentLang() == 'tr' ? 'Yeni Nesil Kripto Borsası' : 'Next-Gen Crypto Exchange'; ?></span>
+                    </div>
                     <h1 class="hero-title">
                         <?php echo getCurrentLang() == 'tr' ? 
-                            'Türkiye\'nin En Güvenilir<br><span class="text-primary">Kripto Borsası</span>' : 
-                            'Turkey\'s Most Trusted<br><span class="text-primary">Crypto Exchange</span>'; ?>
+                            'Geleceğin<br><span class="gradient-text">Kripto Dünyası</span><br>Burada Başlıyor' : 
+                            'The Future of<br><span class="gradient-text">Crypto Trading</span><br>Starts Here'; ?>
                     </h1>
                     <p class="hero-subtitle">
                         <?php echo getCurrentLang() == 'tr' ? 
-                            'Bitcoin, Ethereum ve 50+ kripto para ile güvenli alım-satım yapın. Düşük komisyon, hızlı işlemler ve 7/24 destek.' : 
-                            'Trade Bitcoin, Ethereum and 50+ cryptocurrencies safely. Low fees, fast transactions and 24/7 support.'; ?>
+                            'AI destekli trading, DeFi entegrasyonu ve Web3 teknolojileri ile kripto para ticaretinde yeni bir çağ.' : 
+                            'AI-powered trading, DeFi integration and Web3 technologies for a new era of cryptocurrency trading.'; ?>
                     </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">$2.5B+</div>
+                            <div class="stat-label"><?php echo getCurrentLang() == 'tr' ? 'Günlük Hacim' : 'Daily Volume'; ?></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500K+</div>
+                            <div class="stat-label"><?php echo getCurrentLang() == 'tr' ? 'Aktif Trader' : 'Active Traders'; ?></div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label"><?php echo getCurrentLang() == 'tr' ? 'Uptime' : 'Uptime'; ?></div>
+                        </div>
+                    </div>
                     <div class="hero-buttons">
                         <?php if (!isLoggedIn()): ?>
-                        <a href="register.php" class="btn btn-primary btn-lg me-3">
-                            <i class="fas fa-rocket me-2"></i>
-                            <?php echo getCurrentLang() == 'tr' ? 'Hemen Başla' : 'Get Started'; ?>
+                        <a href="register.php" class="btn btn-primary btn-lg">
+                            <span class="btn-text"><?php echo getCurrentLang() == 'tr' ? 'Hemen Başla' : 'Get Started'; ?></span>
+                            <div class="btn-glow"></div>
                         </a>
-                        <a href="markets.php" class="btn btn-outline-primary btn-lg">
-                            <i class="fas fa-chart-line me-2"></i>
-                            <?php echo getCurrentLang() == 'tr' ? 'Piyasaları İncele' : 'View Markets'; ?>
+                        <a href="markets.php" class="btn btn-outline btn-lg">
+                            <span class="btn-text"><?php echo getCurrentLang() == 'tr' ? 'Piyasaları İncele' : 'Explore Markets'; ?></span>
                         </a>
                         <?php else: ?>
-                        <a href="markets.php" class="btn btn-primary btn-lg me-3">
-                            <i class="fas fa-chart-line me-2"></i>
-                            <?php echo getCurrentLang() == 'tr' ? 'Piyasalar' : 'Markets'; ?>
+                        <a href="markets.php" class="btn btn-primary btn-lg">
+                            <span class="btn-text"><?php echo getCurrentLang() == 'tr' ? 'Piyasalar' : 'Markets'; ?></span>
+                            <div class="btn-glow"></div>
                         </a>
-                        <a href="wallet.php" class="btn btn-outline-primary btn-lg">
-                            <i class="fas fa-wallet me-2"></i>
-                            <?php echo getCurrentLang() == 'tr' ? 'Cüzdan' : 'Wallet'; ?>
+                        <a href="wallet.php" class="btn btn-outline btn-lg">
+                            <span class="btn-text"><?php echo getCurrentLang() == 'tr' ? 'Cüzdan' : 'Wallet'; ?></span>
                         </a>
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="hero-image">
-                    <div class="crypto-animation">
-                        <div class="floating-card">
-                            <i class="fab fa-bitcoin text-warning"></i>
-                            <span>Bitcoin</span>
+                <div class="hero-visual">
+                    <div class="crypto-dashboard">
+                        <div class="dashboard-header">
+                            <div class="header-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="header-title">GlobalBorsa Pro</div>
                         </div>
-                        <div class="floating-card">
-                            <i class="fab fa-ethereum text-info"></i>
-                            <span>Ethereum</span>
+                        <div class="dashboard-content">
+                            <div class="crypto-card-modern">
+                                <div class="crypto-icon">₿</div>
+                                <div class="crypto-info">
+                                    <div class="crypto-name">Bitcoin</div>
+                                    <div class="crypto-price">$43,250.00</div>
+                                    <div class="crypto-change positive">+2.45%</div>
+                                </div>
+                                <div class="crypto-chart">
+                                    <svg viewBox="0 0 100 30">
+                                        <polyline points="0,20 20,15 40,10 60,8 80,5 100,3" stroke="url(#gradient1)" stroke-width="2" fill="none"/>
+                                        <defs>
+                                            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" style="stop-color:#00d4ff"/>
+                                                <stop offset="100%" style="stop-color:#00ff88"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="crypto-card-modern">
+                                <div class="crypto-icon">Ξ</div>
+                                <div class="crypto-info">
+                                    <div class="crypto-name">Ethereum</div>
+                                    <div class="crypto-price">$2,650.00</div>
+                                    <div class="crypto-change positive">+1.85%</div>
+                                </div>
+                                <div class="crypto-chart">
+                                    <svg viewBox="0 0 100 30">
+                                        <polyline points="0,25 20,20 40,15 60,12 80,8 100,5" stroke="url(#gradient2)" stroke-width="2" fill="none"/>
+                                        <defs>
+                                            <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" style="stop-color:#627eea"/>
+                                                <stop offset="100%" style="stop-color:#764ba2"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="trading-interface">
+                                <div class="interface-header">Live Trading</div>
+                                <div class="price-ticker">
+                                    <span class="ticker-item">BTC/USDT <span class="price">43,250</span></span>
+                                    <span class="ticker-item">ETH/USDT <span class="price">2,650</span></span>
+                                    <span class="ticker-item">BNB/USDT <span class="price">315</span></span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="floating-card">
-                            <i class="fas fa-coins text-success"></i>
-                            <span>Altcoins</span>
-                        </div>
+                    </div>
+                    <div class="floating-elements">
+                        <div class="floating-coin coin-1">₿</div>
+                        <div class="floating-coin coin-2">Ξ</div>
+                        <div class="floating-coin coin-3">◊</div>
+                        <div class="floating-coin coin-4">⟐</div>
                     </div>
                 </div>
             </div>
@@ -337,107 +412,493 @@ include 'includes/header.php';
 <?php endif; ?>
 
 <style>
-/* Modern Professional Design */
+/* Ultra-Modern Futuristic Design */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 :root {
-    --primary-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --accent-color: #00d4ff;
-    --success-color: #00c851;
-    --danger-color: #ff4444;
-    --dark-bg: #0f1419;
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --text-primary: #1a1a1a;
-    --text-secondary: #6c757d;
-    --border-radius: 20px;
-    --shadow-light: 0 10px 40px rgba(0, 0, 0, 0.1);
-    --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.15);
+    --primary-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    --neon-blue: #00f5ff;
+    --neon-purple: #bf00ff;
+    --neon-green: #39ff14;
+    --cyber-orange: #ff6b35;
+    --dark-surface: rgba(255, 255, 255, 0.05);
+    --glass-surface: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --border-radius: 24px;
+    --glow-shadow: 0 0 50px rgba(0, 245, 255, 0.3);
+    --cyber-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0a;
+    color: var(--text-primary);
     overflow-x: hidden;
 }
 
-/* Hero Section - Modern Design */
+/* Ultra-Modern Hero Section */
 .hero-section {
     background: var(--primary-gradient);
     position: relative;
-    padding: 120px 0 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     overflow: hidden;
 }
 
-.hero-section::before {
-    content: '';
+.hero-bg {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
-    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: float-shapes 20s infinite linear;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--neon-purple) 0%, transparent 70%);
+    top: 60%;
+    right: 20%;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, var(--neon-green) 0%, transparent 70%);
+    bottom: 20%;
+    left: 30%;
+    animation-delay: -10s;
+}
+
+.shape-4 {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--cyber-orange) 0%, transparent 70%);
+    top: 30%;
+    right: 40%;
+    animation-delay: -15s;
+}
+
+.shape-5 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
+    bottom: 40%;
+    right: 10%;
+    animation-delay: -7s;
+}
+
+@keyframes float-shapes {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    25% { transform: translateY(-20px) rotate(90deg); opacity: 0.5; }
+    50% { transform: translateY(-40px) rotate(180deg); opacity: 0.3; }
+    75% { transform: translateY(-20px) rotate(270deg); opacity: 0.5; }
+}
+
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 245, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 245, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 10;
+}
+
+.hero-badge {
+    display: inline-block;
+    margin-bottom: 2rem;
+    padding: 12px 24px;
+    background: var(--glass-surface);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    border-radius: 50px;
+    box-shadow: var(--glow-shadow);
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 245, 255, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(0, 245, 255, 0.6); }
+}
+
+.badge-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--neon-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .hero-title {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
+    font-size: 4.5rem;
+    font-weight: 700;
     line-height: 1.1;
-    color: white;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
 }
 
-.hero-title .text-primary {
-    background: linear-gradient(45deg, var(--accent-color), #00ff88);
+.gradient-text {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-green));
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: gradient-shift 3s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
-    margin-bottom: 2.5rem;
-    opacity: 0.95;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.4rem;
     line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
     max-width: 600px;
 }
 
-.hero-buttons .btn {
-    padding: 15px 35px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    margin: 0.5rem;
-    transition: all 0.3s ease;
-    border: none;
+.hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.hero-stats .stat-item {
+    text-align: center;
+}
+
+.hero-stats .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--neon-blue);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+}
+
+.hero-stats .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
-.hero-buttons .btn-primary {
-    background: linear-gradient(45deg, var(--accent-color), #00ff88);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
-.hero-buttons .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+.btn {
+    position: relative;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.hero-buttons .btn-outline-primary {
-    border: 2px solid rgba(255, 255, 255, 0.3);
+.btn-primary {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
     color: white;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
 }
 
-.hero-buttons .btn-outline-primary:hover {
-    background: rgba(255, 255, 255, 0.1);
+.btn-primary:hover {
     transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(0, 245, 255, 0.6);
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover .btn-glow {
+    left: 100%;
+}
+
+.btn-outline {
+    background: var(--glass-surface);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    color: var(--neon-blue);
+}
+
+.btn-outline:hover {
+    background: rgba(0, 245, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Futuristic Dashboard */
+.hero-visual {
+    position: relative;
+    z-index: 10;
+}
+
+.crypto-dashboard {
+    background: var(--glass-surface);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--cyber-shadow);
+    animation: float-dashboard 6s ease-in-out infinite;
+}
+
+@keyframes float-dashboard {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+}
+
+.header-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.header-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+}
+
+.header-dots span:nth-child(2) {
+    background: var(--cyber-orange);
+    box-shadow: 0 0 10px var(--cyber-orange);
+}
+
+.header-dots span:nth-child(3) {
+    background: var(--neon-purple);
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+
+.header-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--neon-blue);
+}
+
+.crypto-card-modern {
+    background: var(--dark-surface);
+    border: 1px solid rgba(0, 245, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.crypto-card-modern:hover {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+}
+
+.crypto-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+}
+
+.crypto-info {
+    flex: 1;
+}
+
+.crypto-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.crypto-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--neon-blue);
+}
+
+.crypto-change {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.crypto-change.positive {
+    color: var(--neon-green);
+}
+
+.crypto-chart {
+    width: 80px;
+    height: 30px;
+}
+
+.trading-interface {
+    background: var(--dark-surface);
+    border: 1px solid rgba(0, 245, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.interface-header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.price-ticker {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ticker-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.ticker-item .price {
+    color: var(--neon-green);
+    font-weight: 600;
+}
+
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.floating-coin {
+    position: absolute;
+    font-size: 2rem;
+    color: var(--neon-blue);
+    text-shadow: 0 0 20px var(--neon-blue);
+    animation: float-coins 8s ease-in-out infinite;
+}
+
+.coin-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.coin-2 {
+    top: 60%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.coin-3 {
+    top: 40%;
+    right: 15%;
+    animation-delay: 4s;
+}
+
+.coin-4 {
+    bottom: 30%;
+    right: 25%;
+    animation-delay: 6s;
+}
+
+@keyframes float-coins {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+    25% { transform: translateY(-20px) rotate(90deg); opacity: 1; }
+    50% { transform: translateY(-40px) rotate(180deg); opacity: 0.6; }
+    75% { transform: translateY(-20px) rotate(270deg); opacity: 1; }
+}
+
+.min-vh-100 {
+    min-height: 100vh;
 }
 
 /* Crypto Animation - Enhanced */
