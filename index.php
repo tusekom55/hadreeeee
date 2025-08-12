@@ -29,63 +29,108 @@ $total_volume = $stmt->fetchColumn();
 include 'includes/header.php';
 ?>
 
-<!-- Hero Section -->
+<!-- Hero Section - XM Style -->
 <section class="hero-section">
+    <div class="hero-background">
+        <div class="hero-shapes"></div>
+    </div>
     <div class="container">
-        <div class="row align-items-center min-vh-75">
-            <div class="col-lg-6">
+        <div class="row align-items-center min-vh-80">
+            <div class="col-lg-7">
                 <div class="hero-content">
+                    <div class="trust-badge mb-4">
+                        <span class="badge-text">
+                            <?php echo getCurrentLang() == 'tr' ? 
+                                number_format($total_users) . '+ yatırımcı bize güveniyor' : 
+                                number_format($total_users) . '+ investors trust us'; ?>
+                        </span>
+                    </div>
+                    
                     <h1 class="hero-title">
                         <?php echo getCurrentLang() == 'tr' ? 
-                            'Türkiye\'nin En Güvenilir<br><span class="text-primary">Kripto Borsası</span>' : 
-                            'Turkey\'s Most Trusted<br><span class="text-primary">Crypto Exchange</span>'; ?>
+                            'En çok ödül alan<br><span class="text-accent">kripto borsası</span><br>olmamız tesadüf değil' : 
+                            'Being the most<br><span class="text-accent">awarded crypto exchange</span><br>is no coincidence'; ?>
                     </h1>
+                    
                     <p class="hero-subtitle">
                         <?php echo getCurrentLang() == 'tr' ? 
-                            'Bitcoin, Ethereum ve 50+ kripto para ile güvenli alım-satım yapın. Düşük komisyon, hızlı işlemler ve 7/24 destek.' : 
-                            'Trade Bitcoin, Ethereum and 50+ cryptocurrencies safely. Low fees, fast transactions and 24/7 support.'; ?>
+                            'Yatırımcılara rahatça kâr edebilecekleri seçkin bir kripto yatırım ortamı sağlıyoruz.' : 
+                            'We provide investors with an exclusive crypto investment environment where they can profit comfortably.'; ?>
                     </p>
+                    
                     <div class="hero-buttons">
                         <?php if (!isLoggedIn()): ?>
-                        <a href="register.php" class="btn btn-primary btn-lg me-3">
-                            <i class="fas fa-rocket me-2"></i>
-                            <?php echo getCurrentLang() == 'tr' ? 'Hemen Başla' : 'Get Started'; ?>
+                        <a href="register.php" class="btn btn-primary btn-lg">
+                            <?php echo getCurrentLang() == 'tr' ? 'Hoş Geldin Bonusunu Al*' : 'Get Welcome Bonus*'; ?>
                         </a>
-                        <a href="markets.php" class="btn btn-outline-primary btn-lg">
-                            <i class="fas fa-chart-line me-2"></i>
-                            <?php echo getCurrentLang() == 'tr' ? 'Piyasaları İncele' : 'View Markets'; ?>
-                        </a>
+                        <small class="bonus-note">
+                            <?php echo getCurrentLang() == 'tr' ? '*Sınırlı süreli teklif' : '*Limited time offer'; ?>
+                        </small>
                         <?php else: ?>
-                        <a href="markets.php" class="btn btn-primary btn-lg me-3">
-                            <i class="fas fa-chart-line me-2"></i>
-                            <?php echo getCurrentLang() == 'tr' ? 'Piyasalar' : 'Markets'; ?>
-                        </a>
-                        <a href="wallet.php" class="btn btn-outline-primary btn-lg">
-                            <i class="fas fa-wallet me-2"></i>
-                            <?php echo getCurrentLang() == 'tr' ? 'Cüzdan' : 'Wallet'; ?>
+                        <a href="markets.php" class="btn btn-primary btn-lg">
+                            <?php echo getCurrentLang() == 'tr' ? 'Yatırıma Başla' : 'Start Trading'; ?>
                         </a>
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="hero-image">
-                    <div class="crypto-animation">
-                        <div class="floating-card">
-                            <i class="fab fa-bitcoin text-warning"></i>
-                            <span>Bitcoin</span>
+            <div class="col-lg-5">
+                <div class="hero-visual">
+                    <div class="trading-cards">
+                        <?php if (!empty($top_markets)): ?>
+                        <?php $count = 0; foreach ($top_markets as $market): if($count >= 5) break; ?>
+                        <div class="trading-card" style="animation-delay: <?php echo $count * 0.2; ?>s">
+                            <div class="card-icon">
+                                <?php if ($market['logo_url']): ?>
+                                <img src="<?php echo $market['logo_url']; ?>" alt="<?php echo $market['name']; ?>">
+                                <?php else: ?>
+                                <i class="fas fa-coins"></i>
+                                <?php endif; ?>
+                            </div>
+                            <div class="card-info">
+                                <div class="symbol"><?php echo str_replace('_TL', '', $market['symbol']); ?></div>
+                                <div class="name"><?php echo $market['name']; ?></div>
+                            </div>
                         </div>
-                        <div class="floating-card">
-                            <i class="fab fa-ethereum text-info"></i>
-                            <span>Ethereum</span>
-                        </div>
-                        <div class="floating-card">
-                            <i class="fas fa-coins text-success"></i>
-                            <span>Altcoins</span>
-                        </div>
+                        <?php $count++; endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Access Section -->
+<section class="quick-access py-4 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12 mb-3">
+                <h6 class="text-muted mb-0">
+                    <?php echo getCurrentLang() == 'tr' ? 
+                        '50+ küresel kripto varlığa kolay erişim' : 
+                        'Easy access to 50+ global crypto assets'; ?>
+                </h6>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <?php if (!empty($top_markets)): ?>
+            <?php $count = 0; foreach ($top_markets as $market): if($count >= 5) break; ?>
+            <div class="col-lg-2 col-md-4 col-6 mb-3">
+                <div class="quick-asset">
+                    <div class="asset-icon">
+                        <?php if ($market['logo_url']): ?>
+                        <img src="<?php echo $market['logo_url']; ?>" alt="<?php echo $market['name']; ?>">
+                        <?php else: ?>
+                        <i class="fas fa-coins"></i>
+                        <?php endif; ?>
+                    </div>
+                    <div class="asset-symbol"><?php echo str_replace('_TL', '', $market['symbol']); ?></div>
+                    <div class="asset-name"><?php echo $market['name']; ?></div>
+                </div>
+            </div>
+            <?php $count++; endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -337,52 +382,64 @@ include 'includes/header.php';
 <?php endif; ?>
 
 <style>
-/* Ultra Luxury Minimalist Design */
+/* XM Style Professional Design */
 :root {
-    --primary-white: #ffffff;
-    --secondary-white: #fafafa;
-    --accent-gold: #ffd700;
-    --accent-yellow: #ffeb3b;
-    --warm-gold: #f4c430;
-    --light-gold: #fff8dc;
+    --primary-color: #1a73e8;
+    --secondary-color: #34a853;
+    --accent-color: #ff6b35;
+    --dark-blue: #0d47a1;
+    --light-blue: #e3f2fd;
     --text-primary: #1a1a1a;
-    --text-secondary: #666666;
-    --text-light: #999999;
-    --border-light: #f0f0f0;
-    --shadow-subtle: 0 2px 20px rgba(0, 0, 0, 0.04);
-    --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.08);
-    --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.12);
-    --border-radius: 16px;
-    --success-color: #4caf50;
-    --danger-color: #f44336;
+    --text-secondary: #5f6368;
+    --text-light: #9aa0a6;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-accent: #fafbfc;
+    --border-light: #e8eaed;
+    --shadow-light: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-medium: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    --shadow-heavy: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    --border-radius: 8px;
+    --success-color: #34a853;
+    --danger-color: #ea4335;
+    --warning-color: #fbbc04;
 }
 
 body {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--primary-white);
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
     font-weight: 400;
     line-height: 1.6;
 }
 
-/* Hero Section - Ultra Minimalist */
+/* Hero Section - XM Style */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-white) 0%, var(--light-gold) 100%);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--light-blue) 100%);
     position: relative;
-    padding: 140px 0 100px;
+    padding: 120px 0 80px;
     overflow: hidden;
 }
 
-.hero-section::before {
-    content: '';
+.hero-background {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 235, 59, 0.06) 0%, transparent 50%);
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231a73e8;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%2334a853;stop-opacity:0.05" /></linearGradient></defs><path d="M0,300 Q250,200 500,300 T1000,300 L1000,0 L0,0 Z" fill="url(%23grad1)"/></svg>');
+    background-size: cover;
+}
+
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(26, 115, 232, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(52, 168, 83, 0.06) 0%, transparent 50%);
 }
 
 .hero-content {
@@ -390,67 +447,192 @@ body {
     z-index: 2;
 }
 
-.hero-title {
-    font-size: 4.5rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-    line-height: 1.1;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
+.trust-badge {
+    display: inline-block;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 25px;
+    padding: 8px 20px;
+    box-shadow: var(--shadow-light);
 }
 
-.hero-title .text-primary {
-    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 400;
+.badge-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+.hero-title .text-accent {
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .hero-subtitle {
-    font-size: 1.4rem;
-    margin-bottom: 3rem;
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
     color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 580px;
-    font-weight: 300;
+    line-height: 1.6;
+    max-width: 600px;
 }
 
 .hero-buttons .btn {
-    padding: 18px 40px;
-    font-weight: 500;
+    padding: 16px 32px;
+    font-weight: 600;
     font-size: 1rem;
-    border-radius: 12px;
-    margin: 0.5rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
     border: none;
-    letter-spacing: 0.3px;
     text-transform: none;
 }
 
 .hero-buttons .btn-primary {
-    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
-    color: var(--text-primary);
+    background: var(--primary-color);
+    color: white;
     box-shadow: var(--shadow-medium);
 }
 
 .hero-buttons .btn-primary:hover {
+    background: var(--dark-blue);
     transform: translateY(-2px);
     box-shadow: var(--shadow-heavy);
-    background: linear-gradient(135deg, var(--warm-gold), var(--accent-gold));
 }
 
-.hero-buttons .btn-outline-primary {
+.bonus-note {
+    display: block;
+    margin-top: 8px;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+/* Hero Visual - XM Style */
+.hero-visual {
+    position: relative;
+    height: 400px;
+}
+
+.trading-cards {
+    position: relative;
+    height: 100%;
+}
+
+.trading-card {
+    position: absolute;
+    background: var(--bg-primary);
     border: 1px solid var(--border-light);
-    color: var(--text-primary);
-    background: var(--primary-white);
-    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow-medium);
+    display: flex;
+    align-items: center;
+    min-width: 180px;
+    animation: cardFloat 6s ease-in-out infinite;
 }
 
-.hero-buttons .btn-outline-primary:hover {
-    background: var(--secondary-white);
+.trading-card:nth-child(1) { top: 20px; right: 50px; }
+.trading-card:nth-child(2) { top: 120px; right: 20px; }
+.trading-card:nth-child(3) { top: 220px; right: 80px; }
+.trading-card:nth-child(4) { top: 80px; right: 150px; }
+.trading-card:nth-child(5) { top: 180px; right: 120px; }
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.card-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.card-info .symbol {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.card-info .name {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Quick Access Section */
+.quick-access {
+    background: var(--bg-secondary) !important;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.quick-asset {
+    text-align: center;
+    padding: 20px 10px;
+    background: var(--bg-primary);
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.quick-asset:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-medium);
+    box-shadow: var(--shadow-light);
+}
+
+.asset-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.asset-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.asset-icon i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.asset-symbol {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.asset-name {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.min-vh-80 {
+    min-height: 80vh;
 }
 
 /* Crypto Animation - Minimalist */
