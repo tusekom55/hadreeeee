@@ -337,32 +337,40 @@ include 'includes/header.php';
 <?php endif; ?>
 
 <style>
-/* Modern Professional Design */
+/* Ultra Luxury Minimalist Design */
 :root {
-    --primary-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --accent-color: #00d4ff;
-    --success-color: #00c851;
-    --danger-color: #ff4444;
-    --dark-bg: #0f1419;
-    --card-bg: rgba(255, 255, 255, 0.95);
+    --primary-white: #ffffff;
+    --secondary-white: #fafafa;
+    --accent-gold: #ffd700;
+    --accent-yellow: #ffeb3b;
+    --warm-gold: #f4c430;
+    --light-gold: #fff8dc;
     --text-primary: #1a1a1a;
-    --text-secondary: #6c757d;
-    --border-radius: 20px;
-    --shadow-light: 0 10px 40px rgba(0, 0, 0, 0.1);
-    --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.15);
+    --text-secondary: #666666;
+    --text-light: #999999;
+    --border-light: #f0f0f0;
+    --shadow-subtle: 0 2px 20px rgba(0, 0, 0, 0.04);
+    --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.08);
+    --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.12);
+    --border-radius: 16px;
+    --success-color: #4caf50;
+    --danger-color: #f44336;
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--primary-white);
+    color: var(--text-primary);
     overflow-x: hidden;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
-/* Hero Section - Modern Design */
+/* Hero Section - Ultra Minimalist */
 .hero-section {
-    background: var(--primary-gradient);
+    background: linear-gradient(135deg, var(--primary-white) 0%, var(--light-gold) 100%);
     position: relative;
-    padding: 120px 0 80px;
+    padding: 140px 0 100px;
     overflow: hidden;
 }
 
@@ -373,8 +381,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
-    opacity: 0.3;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 235, 59, 0.06) 0%, transparent 50%);
 }
 
 .hero-content {
@@ -383,67 +391,72 @@ body {
 }
 
 .hero-title {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
+    font-size: 4.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
     line-height: 1.1;
-    color: white;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
 
 .hero-title .text-primary {
-    background: linear-gradient(45deg, var(--accent-color), #00ff88);
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-weight: 400;
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
-    margin-bottom: 2.5rem;
-    opacity: 0.95;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    max-width: 600px;
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 580px;
+    font-weight: 300;
 }
 
 .hero-buttons .btn {
-    padding: 15px 35px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    border-radius: 50px;
+    padding: 18px 40px;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 12px;
     margin: 0.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    text-transform: none;
 }
 
 .hero-buttons .btn-primary {
-    background: linear-gradient(45deg, var(--accent-color), #00ff88);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
+    color: var(--text-primary);
+    box-shadow: var(--shadow-medium);
 }
 
 .hero-buttons .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-heavy);
+    background: linear-gradient(135deg, var(--warm-gold), var(--accent-gold));
 }
 
 .hero-buttons .btn-outline-primary {
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+    background: var(--primary-white);
+    backdrop-filter: blur(20px);
 }
 
 .hero-buttons .btn-outline-primary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-3px);
+    background: var(--secondary-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
 }
 
-/* Crypto Animation - Enhanced */
+/* Crypto Animation - Minimalist */
 .crypto-animation {
     position: relative;
-    height: 500px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -451,101 +464,100 @@ body {
 
 .floating-card {
     position: absolute;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--primary-white);
+    border: 1px solid var(--border-light);
     border-radius: var(--border-radius);
-    padding: 25px;
+    padding: 30px;
     text-align: center;
-    animation: float 8s ease-in-out infinite;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    animation: float 12s ease-in-out infinite;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .floating-card:hover {
-    transform: scale(1.05) translateY(-10px);
-    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: var(--shadow-medium);
 }
 
 .floating-card:nth-child(1) {
-    top: 80px;
-    right: 120px;
+    top: 60px;
+    right: 100px;
     animation-delay: 0s;
 }
 
 .floating-card:nth-child(2) {
-    top: 250px;
-    right: 60px;
-    animation-delay: 2.5s;
+    top: 220px;
+    right: 40px;
+    animation-delay: 4s;
 }
 
 .floating-card:nth-child(3) {
-    top: 180px;
-    right: 220px;
-    animation-delay: 5s;
+    top: 140px;
+    right: 180px;
+    animation-delay: 8s;
 }
 
 .floating-card i {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+    font-size: 2.2rem;
+    margin-bottom: 12px;
     display: block;
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
 }
 
 .floating-card span {
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: white;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    25% { transform: translateY(-15px) rotate(1deg); }
-    50% { transform: translateY(-25px) rotate(0deg); }
-    75% { transform: translateY(-10px) rotate(-1deg); }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
 }
 
-/* Section Styling */
+/* Section Styling - Minimalist */
 .section-title {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
     color: var(--text-primary);
+    letter-spacing: -0.01em;
     position: relative;
 }
 
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(45deg, var(--accent-color), #00ff88);
-    border-radius: 2px;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
+    border-radius: 1px;
 }
 
 .section-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-secondary);
     margin-bottom: 0;
-    max-width: 600px;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 300;
+    line-height: 1.7;
 }
 
-/* Feature Cards - Premium Design */
+/* Feature Cards - Ultra Minimalist */
 .feature-card {
     text-align: center;
-    padding: 3rem 2rem;
-    background: var(--card-bg);
+    padding: 3.5rem 2.5rem;
+    background: var(--primary-white);
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-    transition: all 0.4s ease;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     height: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--border-light);
     position: relative;
     overflow: hidden;
 }
@@ -556,10 +568,10 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(45deg, var(--accent-color), #00ff88);
+    height: 2px;
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
 .feature-card:hover::before {
@@ -567,15 +579,15 @@ body {
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-heavy);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
 }
 
 .feature-icon {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 2rem;
-    background: linear-gradient(135deg, var(--accent-color), #00ff88);
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2.5rem;
+    background: linear-gradient(135deg, var(--light-gold), var(--accent-gold));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -586,38 +598,49 @@ body {
 .feature-icon::before {
     content: '';
     position: absolute;
-    inset: 3px;
-    background: white;
+    inset: 2px;
+    background: var(--primary-white);
     border-radius: 50%;
 }
 
 .feature-icon i {
-    font-size: 2.5rem;
+    font-size: 2rem;
     position: relative;
     z-index: 1;
-    background: linear-gradient(135deg, var(--accent-color), #00ff88);
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .feature-card h5 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
     color: var(--text-primary);
+    letter-spacing: 0.3px;
 }
 
-/* Crypto Cards - Enhanced */
+.feature-card p {
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Crypto Cards - Ultra Minimalist */
+.popular-crypto {
+    background: var(--secondary-white) !important;
+}
+
 .crypto-card {
-    background: var(--card-bg);
+    background: var(--primary-white);
     border-radius: var(--border-radius);
-    padding: 2rem;
-    box-shadow: var(--shadow-light);
-    transition: all 0.4s ease;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     height: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--border-light);
     position: relative;
     overflow: hidden;
 }
@@ -628,60 +651,62 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, var(--accent-color), #00ff88);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    height: 2px;
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
 }
 
 .crypto-card:hover::before {
-    opacity: 0.05;
+    transform: scaleX(1);
 }
 
 .crypto-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-heavy);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-medium);
 }
 
 .crypto-header {
     display: flex;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     position: relative;
     z-index: 1;
 }
 
 .crypto-logo {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     margin-right: 1rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-subtle);
 }
 
 .crypto-logo-placeholder {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--accent-color), #00ff88);
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 1rem;
-    color: white;
-    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+    color: var(--primary-white);
+    box-shadow: var(--shadow-subtle);
 }
 
 .crypto-symbol {
-    font-weight: 800;
-    font-size: 1.2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
     margin-bottom: 0.25rem;
     color: var(--text-primary);
+    letter-spacing: 0.3px;
 }
 
 .crypto-name {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 300;
 }
 
 .crypto-price {
@@ -690,33 +715,35 @@ body {
 }
 
 .crypto-price .price {
-    font-size: 1.8rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
     color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .crypto-price .change {
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 5px 12px;
-    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    border-radius: 12px;
     display: inline-block;
+    letter-spacing: 0.2px;
 }
 
 .crypto-price .change.positive {
     color: var(--success-color);
-    background: rgba(0, 200, 81, 0.1);
+    background: rgba(76, 175, 80, 0.08);
 }
 
 .crypto-price .change.negative {
     color: var(--danger-color);
-    background: rgba(255, 68, 68, 0.1);
+    background: rgba(244, 67, 54, 0.08);
 }
 
-/* Statistics Section */
+/* Statistics Section - Gold Theme */
 .statistics {
-    background: var(--primary-gradient);
+    background: linear-gradient(135deg, var(--accent-gold) 0%, var(--warm-gold) 100%);
     position: relative;
 }
 
@@ -727,106 +754,110 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="b" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="100" cy="100" r="80" fill="url(%23b)"/><circle cx="900" cy="200" r="120" fill="url(%23b)"/><circle cx="300" cy="800" r="100" fill="url(%23b)"/></svg>');
-    opacity: 0.2;
+    background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
 }
 
 .stat-item {
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
     position: relative;
     z-index: 1;
 }
 
 .stat-number {
-    font-size: 3.5rem;
-    font-weight: 900;
-    margin-bottom: 0.5rem;
-    color: white;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    font-size: 3.2rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
 
 .stat-label {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    font-size: 1.1rem;
     margin-bottom: 0;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
+    color: var(--text-primary);
+    font-weight: 400;
+    opacity: 0.8;
 }
 
-/* CTA Section */
+/* CTA Section - Minimalist */
 .cta-section {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: var(--primary-white);
     position: relative;
 }
 
 .cta-title {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
     color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .cta-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
-    margin-bottom: 2.5rem;
-    max-width: 600px;
+    margin-bottom: 3rem;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 300;
+    line-height: 1.7;
 }
 
 .cta-buttons .btn {
-    padding: 15px 35px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    border-radius: 50px;
+    padding: 18px 40px;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 12px;
     margin: 0.5rem;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: none;
+    letter-spacing: 0.3px;
 }
 
-/* Step Cards */
+/* Step Cards - Ultra Clean */
 .step-card {
     text-align: center;
-    padding: 3rem 2rem;
+    padding: 3.5rem 2.5rem;
     position: relative;
-    background: var(--card-bg);
+    background: var(--primary-white);
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-light);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-subtle);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     height: 100%;
-    margin-top: 30px;
+    margin-top: 40px;
+    border: 1px solid var(--border-light);
 }
 
 .step-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-heavy);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-medium);
 }
 
 .step-number {
     position: absolute;
-    top: -25px;
+    top: -30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--accent-color), #00ff88);
-    color: white;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
+    color: var(--text-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
-    font-size: 1.4rem;
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    font-weight: 500;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-medium);
 }
 
 .step-icon {
-    width: 100px;
-    height: 100px;
-    margin: 2rem auto 1.5rem;
-    background: linear-gradient(135deg, var(--accent-color), #00ff88);
+    width: 90px;
+    height: 90px;
+    margin: 2.5rem auto 2rem;
+    background: linear-gradient(135deg, var(--light-gold), var(--accent-gold));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -837,19 +868,33 @@ body {
 .step-icon::before {
     content: '';
     position: absolute;
-    inset: 3px;
-    background: white;
+    inset: 2px;
+    background: var(--primary-white);
     border-radius: 50%;
 }
 
 .step-icon i {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     position: relative;
     z-index: 1;
-    background: linear-gradient(135deg, var(--accent-color), #00ff88);
+    background: linear-gradient(135deg, var(--accent-gold), var(--warm-gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.step-card h5 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+}
+
+.step-card p {
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.6;
 }
 
 .min-vh-75 {
