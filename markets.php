@@ -238,10 +238,27 @@ document.getElementById('marketSearch').addEventListener('input', function(e) {
     });
 });
 
-// Auto refresh market data (disabled temporarily due to JSON issues)
+// Auto refresh market data
 function refreshMarketData() {
-    // Temporarily disabled to prevent JSON errors
-    console.log('Auto refresh temporarily disabled');
+    fetch('api/get_market_data.php?category=<?php echo $category; ?>')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(text => {
+            try {
+                const data = JSON.parse(text);
+                if (data.success) {
+                    updateMarketTable(data.markets);
+                }
+            } catch (e) {
+                console.error('JSON Parse Error:', e);
+                console.error('Response text:', text);
+            }
+        })
+        .catch(error => console.error('Error refreshing market data:', error));
 }
 
 function updateMarketTable(markets) {
