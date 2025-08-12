@@ -33,10 +33,11 @@ function initializeTooltips() {
 }
 
 function startMarketUpdates() {
-    // Update every 30 seconds
-    marketUpdateInterval = setInterval(function() {
-        refreshMarketData();
-    }, 30000);
+    // Auto-refresh temporarily disabled due to JSON issues
+    console.log('Market auto-refresh disabled');
+    // marketUpdateInterval = setInterval(function() {
+    //     refreshMarketData();
+    // }, 30000);
 }
 
 function refreshMarketData() {
