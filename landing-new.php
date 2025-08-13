@@ -53,30 +53,30 @@ $markets = getMarketData('crypto_tl', 6);
 
         /* ===== HERO SLIDER ===== */
         .hero-slider {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0f1419 100%);
+            position: relative !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #0f1419 100%) !important;
         }
 
         .slider-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
+            position: relative !important;
+            width: 100% !important;
+            height: 100% !important;
         }
 
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            opacity: 0 !important;
+            transition: opacity 1s ease-in-out !important;
         }
 
         .slide.active {
-            opacity: 1;
+            opacity: 1 !important;
         }
 
         .slide-background {
@@ -1083,8 +1083,8 @@ $markets = getMarketData('crypto_tl', 6);
     </style>
 </head>
 <body>
-    <!-- Skip the header include for cleaner implementation -->
-    <!-- Hero Slider starts immediately -->
+    <!-- Include header -->
+    <?php include 'includes/header.php'; ?>
 
     <!-- Hero Slider -->
     <section class="hero-slider" id="hero">
