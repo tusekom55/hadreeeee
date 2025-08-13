@@ -18,11 +18,294 @@ $markets = getMarketData('crypto_tl', 6);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
     <!-- Custom Landing CSS -->
     <link href="assets/css/landing.css" rel="stylesheet">
     
-    <!-- AOS Animation Library -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Critical CSS - XM.com Style */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(135deg, #1a365d 0%, #2b5ce6 50%, #3182ce 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 50;
+        }
+        
+        .navbar-dark {
+            position: relative;
+            z-index: 100;
+            background: rgba(26, 54, 93, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .trust-text {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background: #2b5ce6;
+            border: 2px solid #2b5ce6;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 0.375rem;
+        }
+        
+        .btn-lg {
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+        }
+        
+        .btn-primary:hover {
+            background: #3182ce;
+            border-color: #3182ce;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(43, 92, 230, 0.3);
+        }
+        
+        .crypto-ticker {
+            margin-top: 4rem;
+            position: relative;
+            z-index: 50;
+        }
+        
+        .ticker-title {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .crypto-cards {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .crypto-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            min-width: 180px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .crypto-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .crypto-icon img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+        }
+        
+        .crypto-symbol {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .crypto-name {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .positive {
+            color: #48bb78;
+        }
+        
+        .negative {
+            color: #f56565;
+        }
+        
+        .features-section {
+            background: #f7fafc;
+            padding: 6rem 0;
+        }
+        
+        .features-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+        
+        .text-primary {
+            color: #2b5ce6;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-content {
+            flex: 1;
+        }
+        
+        .card-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #2b5ce6;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-btn:hover {
+            background: #3182ce;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .stats-section {
+            background: #1a202c;
+            color: white;
+            padding: 6rem 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-section {
+            background: #f7fafc;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .landing-footer {
+            background: #2d3748;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .crypto-cards {
+                gap: 0.5rem;
+            }
+            
+            .feature-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Hero Section -->
