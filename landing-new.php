@@ -1577,5 +1577,122 @@ $markets = getMarketData('crypto_tl', 6);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="assets/js/landing-new.js"></script>
+    
+    <!-- Inline JavaScript for Slider -->
+    <script>
+        // Hero Slider - Inline to ensure it works
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing slider...');
+            
+            const slides = document.querySelectorAll('.slide');
+            const progressBar = document.getElementById('sliderProgress');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            console.log('Found slides:', slides.length);
+            
+            if (slides.length === 0) {
+                console.log('No slides found!');
+                return;
+            }
+            
+            // Function to show specific slide
+            function showSlide(index) {
+                console.log('Showing slide:', index);
+                
+                // Remove active class from all slides
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    console.log('Removed active from slide', i);
+                });
+                
+                // Add active class to current slide
+                slides[index].classList.add('active');
+                console.log('Added active to slide', index);
+                
+                currentSlide = index;
+                
+                // Update progress bar
+                if (progressBar) {
+                    progressBar.style.width = '0%';
+                    setTimeout(() => {
+                        progressBar.style.width = '100%';
+                    }, 100);
+                }
+            }
+            
+            // Auto-slide functionality
+            function startAutoSlide() {
+                slideInterval = setInterval(() => {
+                    console.log('Auto advancing from slide', currentSlide);
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    showSlide(currentSlide);
+                }, 5000); // 5 seconds
+            }
+            
+            // Initialize progress bar
+            if (progressBar) {
+                progressBar.style.width = '0%';
+                progressBar.style.transition = 'width 5s linear';
+                setTimeout(() => {
+                    progressBar.style.width = '100%';
+                }, 100);
+            }
+            
+            // Start auto-slide
+            startAutoSlide();
+            console.log('Auto-slide started');
+            
+            // Manual controls for testing
+            window.nextSlide = function() {
+                clearInterval(slideInterval);
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+                setTimeout(startAutoSlide, 1000);
+            };
+            
+            window.prevSlide = function() {
+                clearInterval(slideInterval);
+                currentSlide = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+                showSlide(currentSlide);
+                setTimeout(startAutoSlide, 1000);
+            };
+            
+            // Pause on hover
+            const heroSlider = document.querySelector('.hero-slider');
+            if (heroSlider) {
+                heroSlider.addEventListener('mouseenter', () => {
+                    clearInterval(slideInterval);
+                    console.log('Paused on hover');
+                });
+                
+                heroSlider.addEventListener('mouseleave', () => {
+                    startAutoSlide();
+                    console.log('Resumed on leave');
+                });
+            }
+            
+            // Keyboard controls
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    window.prevSlide();
+                } else if (e.key === 'ArrowRight') {
+                    window.nextSlide();
+                }
+            });
+            
+            console.log('Slider initialization complete');
+        });
+        
+        // Test function - you can call this in browser console
+        window.testSlider = function() {
+            console.log('Testing slider...');
+            const slides = document.querySelectorAll('.slide');
+            console.log('Slides found:', slides.length);
+            slides.forEach((slide, i) => {
+                console.log('Slide', i, 'classes:', slide.className);
+            });
+        };
+    </script>
 </body>
 </html>
