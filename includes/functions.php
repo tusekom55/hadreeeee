@@ -101,7 +101,6 @@ function getFinancialCategories() {
         'us_stocks' => 'ABD Hisse Senetleri',
         'eu_stocks' => 'Avrupa Hisse Senetleri', 
         'world_stocks' => 'Dünya Hisse Senetleri',
-        'crypto' => 'Kripto Para',
         'commodities' => 'Emtialar',
         'forex_major' => 'Forex Majör Çiftler',
         'forex_minor' => 'Forex Minör Çiftler',
