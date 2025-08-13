@@ -26,6 +26,12 @@ function requireLogin() {
     }
 }
 
+// DEBUG: Test function to check what's happening
+function debugLocation() {
+    echo "<!-- DEBUG: Current file: " . basename($_SERVER['PHP_SELF']) . " -->";
+    echo "<!-- DEBUG: Functions loaded successfully -->";
+}
+
 // Redirect if not admin
 function requireAdmin() {
     if (!isAdmin()) {

@@ -1,15 +1,8 @@
 <?php
-// DEBUG: Landing sayfası başlangıcı
-echo "<!-- DEBUG: Landing-new.php başladı -->";
-echo "<script>console.log('DEBUG: Landing-new.php başladı');</script>";
-
 require_once 'includes/functions.php';
-echo "<!-- DEBUG: functions.php yüklendi -->";
-echo "<script>console.log('DEBUG: functions.php yüklendi');</script>";
+debugLocation(); // Debug test
 
 $page_title = 'GlobalBorsa - Türkiye\'nin En Güvenilir Kripto Borsası';
-echo "<!-- DEBUG: page_title set edildi -->";
-echo "<script>console.log('DEBUG: page_title set edildi');</script>";
 
 // Get some sample market data for display
 $markets = getMarketData('crypto_tl', 6);
