@@ -74,10 +74,10 @@ RewriteEngine On
     php_value max_input_vars 3000
 </IfModule>
 
-# Prevent hotlinking
+# Prevent hotlinking (updated for correct domain)
 RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?yourdomain.com [NC]
-RewriteRule \.(jpg|jpeg|png|gif|css|js)$ - [NC,F,L]
+RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?silver-eland-900684\.hostingersite\.com [NC]
+RewriteRule \.(jpg|jpeg|png|gif)$ - [NC,F,L]
 
 # Force HTTPS (uncomment if you have SSL)
 # RewriteCond %{HTTPS} off
