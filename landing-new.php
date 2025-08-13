@@ -290,6 +290,8 @@ $markets = getMarketData('crypto_tl', 6);
             animation: simple-scroll 20s linear infinite !important;
             white-space: nowrap !important;
             width: 4000px !important;
+            animation-delay: 0s !important;
+            will-change: transform !important;
         }
 
         .coin-item {
@@ -329,54 +331,54 @@ $markets = getMarketData('crypto_tl', 6);
             background-repeat: no-repeat;
         }
         
-        /* Company Logos */
+        /* Company Logos - Real Company Logos */
         .logo-aapl {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE4LjcxIDE5LjVDMTguNDE3IDE5LjIzMyAxNi4wMDggMTcuNTMzIDEzLjIyNCAxNy4wMTZDMTIuMzYzIDE2Ljg0NCAxMS41MTQgMTYuODQ0IDEwLjY1MyAxNy4wMTZDNy44NjkgMTcuNTMzIDUuNDYgMTkuMjMzIDUuMTY3IDE5LjVDNi4wNCAxOS4zMiA2LjkyOCAxOS4xNzUgNy44MjYgMTkuMDY2QzEwLjQzIDE4Ljc3IDEzLjQ0NyAxOC43NyAxNi4wNTEgMTkuMDY2QzE2Ljk0OSAxOS4xNzUgMTcuODM3IDE5LjMyIDE4LjcxIDE5LjVaIiBmaWxsPSIjMDAwMDAwIi8+CjxwYXRoIGQ9Ik0xMi4xOTcgMTYuMDM1QzEzLjM1NCAxNi4wMzUgMTQuMjgzIDE1LjU3NCAxNS4wNTUgMTQuNzI2QzE1LjgyNiAxMy44NzggMTUuOTk4IDEyLjc3MyAxNS41MDUgMTEuNzQ2QzE1LjE0NCAxMC45NzMgMTQuNTkxIDEwLjMzNiAxMy44NSA5LjkwN0MxMy4xMDkgOS40NzggMTIuMjUyIDkuMjc1IDExLjM4OCA5LjMzMkMxMC41MjQgOS4zODkgOS43MDYgOS43MDUgOS4wNDEgMTAuMjNDOC4zNzYgMTAuNzU1IDcuOTEgMTEuNDU0IDcuNzE3IDEyLjIyN0M3LjUyNCAxMi45OTkgNy42MTMgMTMuODE2IDcuOTcxIDE0LjU0N0M4LjMyOSAxNS4yNzggOC45MzUgMTUuODgzIDkuNjY2IDE2LjI0MUM5Ljk3MSAxNi4zNzkgMTAuMzA1IDE6LjQ0OSAxMC42NDMgMTYuNDQ4QzEwLjk4MSAxNi40NDcgMTEuMzE1IDE2LjM3NiAxMS42MjEgMTYuMjM5QzExLjgwNyAxNi4xNTEgMTEuOTk5IDE2LjA5NiAxMi4xOTcgMTYuMDM1WiIgZmlsbD0iIzAwMDAwMCIvPgo8L3N2Zz4K');
+            background-image: url('https://logo.clearbit.com/apple.com');
             background-color: #f5f5f7;
         }
         
         .logo-msft {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkY1NzIyIi8+CjxyZWN0IHg9IjEyIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9IiM5MkMzNDEiLz4KPHJlY3QgeT0iMTIiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0iIzAwQjFGMyIvPgo8cmVjdCB4PSIxMiIgeT0iMTIiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0ZGQjkwMCIvPgo8L3N2Zz4K');
+            background-image: url('https://logo.clearbit.com/microsoft.com');
             background-color: #f5f5f5;
         }
         
         .logo-googl {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIyLjU2IDEyLjI1QzIyLjU2IDExLjQ3IDIyLjQ5IDEwLjcyIDIyLjM2IDEwSDEyVjE0LjI2SDE3LjkyQzE3LjY2IDE1LjYgMTYuOTIgMTYuNzQgMTUuODYgMTcuNDRWMjAuNEgxOS4zOEMyMS4zIDIwLjYgMjIuNTYgMTguMDggMjIuNTYgMTIuMjVaIiBmaWxsPSIjNDI4NUY0Ii8+CjxwYXRoIGQ9Ik0xMiAyNEM5LjI0IDI0IDYuNzggMjIuNjQgNS4yNyAyMC42Mkw4LjkxIDE3LjY2QzkuODMgMTguMDIgMTAuODggMTguMjQgMTIgMTguMjRDMTQuNzcgMTguMjQgMTcuMSAxNi41NSAxNy4xIDEzLjEySDEzLjM0VjExLjEySDIwLjgxQzIwLjkxIDExLjU5IDIwLjk3IDEyLjA5IDIwLjk3IDEyLjYyQzIwLjk3IDE4LjM5IDE2LjggMjQgMTIgMjRaIiBmaWxsPSIjMzRBODUzIi8+Cjwvc3ZnPgo=');
+            background-image: url('https://logo.clearbit.com/google.com');
             background-color: #f5f5f5;
         }
         
         .logo-amzn {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjA2NSAxOS44NzJMMTAuNDUgMTcuMjU3TDEyIDEzLjJMMTUuMDM1IDE2LjIzNUwxMy4wNjUgMTkuODcyWiIgZmlsbD0iI0ZGOTkwMCIvPgo8cGF0aCBkPSJNMTguOTM1IDE3LjkyM0M5LjYzNyAyMi45OTcgMS4wNDYgMjEuNDIzIDAuMDg5IDE4LjEyMkMtMC4zMTMgMTYuOTA4IDAuMTI4IDE1LjUyNCAxLjE1NyAxNC44ODhMMTYuOTM1IDUuMTVDMTkuMDEgMy43NzEgMjEuNTY3IDcuMTM4IDE5LjY4MiA5LjAyM0wxNS4yMDMgMTMuNTAyTDE4LjkzNSAxNy45MjNaIiBmaWxsPSIjRkY5OTAwIi8+Cjwvc3ZnPgo=');
+            background-image: url('https://logo.clearbit.com/amazon.com');
             background-color: #f5f5f5;
         }
         
         .logo-tsla {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSIjZTMxOTM3Ii8+Cjwvc3ZnPgo=');
+            background-image: url('https://logo.clearbit.com/tesla.com');
             background-color: #e31937;
         }
         
         .logo-meta {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTI0IDEySjI0IDE4LjM2NFExNy40NTUgMjQgMTIgMjRDNi41NDUgMjQgMCAxOC4zNjQgMCAxMkMwIDUuNjM2IDYuNTQ1IDAgMTIgMEMxNy40NTUgMCAyNCA1LjYzNiAyNCAxMloiIGZpbGw9IiMxODc3RjIiLz4KPHBhdGggZD0iTTE2LjU2NCAxMi4xMzdMMTYuOTggNy45MjNIMTMuMDRWNS4wNzNIMTEuMDU2VjcuOTIzSDguNTEyVjkuODVIMTEuMDU2VjE1LjMzM0MxMS4wNTYgMTYuNjMzIDEyLjEgMTcuNjc3IDEzLjQgMTcuNjc3QzEzLjk5NCAxNy42NzcgMTQuNTUxIDE3LjQ3OSAxNS4wMDcgMTcuMTE3TDE0LjQxMyAxNS4zMzNDMTQuMTQ3IDE1LjUxMSAxMy44MzIgMTUuNjA3IDEzLjUxIDEzLjYwOFYxNS4wNEgxNi41NjRWMTIuMTM3WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+');
+            background-image: url('https://logo.clearbit.com/meta.com');
             background-color: #1877f2;
         }
         
         .logo-nflx {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjZTUwOTE0Ii8+CjxwYXRoIGQ9Ik01IDJMMTQgOVY0SDE4VjIwSDE0VjE1TDUgMjJIMVYySDE1WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+');
+            background-image: url('https://logo.clearbit.com/netflix.com');
             background-color: #e50914;
         }
         
         .logo-v {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAuNiA0LjJMMTAuOCAxOS44SDE2LjJMMjMuNCAxMi42SDEwLjhWOC40SDIzLjRWNC4ySDEwLjhWMEg2LjZWNC4ySDYuNloiIGZpbGw9IiMxNDE4OGYiLz4KPC9zdmc+');
+            background-image: url('https://logo.clearbit.com/visa.com');
             background-color: #1418af;
         }
         
         .logo-ko {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNGNDAxMEEiLz4KPHBhdGggZD0iTTEyIDZDMTUuMzE0IDYgMTggOC42ODYgMTggMTJDMTggMTUuMzE0IDE1LjMxNCAxOCAxMiAxOEM4LjY4NiAxOCA2IDE1LjMxNCA2IDEyQzYgOC42ODYgOC42ODYgNiAxMiA2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTEyIDEwLjVDMTMuMTA3IDEwLjUgMTQgMTEuMzkzIDE0IDEyLjVDMTQgMTMuNjA3IDEzLjEwNyAxNC41IDEyIDE0LjVDMTAuODkzIDE0LjUgMTAgMTMuNjA3IDEwIDEyLjVDMTAgMTEuMzkzIDEwLjg5MyAxMC41IDEyIDEwLjVaIiBmaWxsPSIjRjQwMTBBIi8+Cjwvc3ZnPgo=');
+            background-image: url('https://logo.clearbit.com/coca-cola.com');
             background-color: #f4010a;
         }
         
         .logo-jpm {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjMDA0OGEwIi8+CjxwYXRoIGQ9Ik04LjQgNi42VjE3LjRIMTAuOFY2LjZIOC40WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTEzLjIgNi42VjE3LjRIMTUuNlY2LjZIMTMuMloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik02IDQuMkgxOFY2LjZINlY0LjJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNiAxNy40SDE4VjE5LjhINlYxNy40WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+');
+            background-image: url('https://logo.clearbit.com/jpmorganchase.com');
             background-color: #0048a0;
         }
 
