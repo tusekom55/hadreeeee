@@ -14,7 +14,7 @@ function initializeApp() {
     initializeTooltips();
     
     // Start market data updates if on markets page
-    if (window.location.pathname.includes('markets.php')) {
+    if (window.location.pathname.includes('index.php') || window.location.pathname === '/') {
         startMarketUpdates();
     }
     
@@ -44,33 +44,15 @@ function refreshMarketData() {
     const category = urlParams.get('group') || 'crypto_tl';
     
     fetch(`api/get_market_data.php?category=${category}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(text => {
-            try {
-                const data = JSON.parse(text);
-                if (data.success) {
-                    updateMarketTable(data.markets);
-                    updateLastUpdateTime();
-                } else {
-                    console.error('API Error:', data.error);
-                }
-            } catch (e) {
-                console.error('JSON Parse Error:', e);
-                console.error('Response text:', text);
-                console.error('Error details:', {
-                    name: e.name,
-                    message: e.message,
-                    stack: e.stack
-                });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                updateMarketTable(data.markets);
+                updateLastUpdateTime();
             }
         })
         .catch(error => {
-            console.error('Fetch Error:', error);
+            console.error('Error refreshing market data:', error);
         });
 }
 
