@@ -1,30 +1,35 @@
 <?php
 require_once 'includes/functions.php';
 
-$page_title = t('crypto_markets');
-
-// Update market data if it's been more than 5 minutes
-$database = new Database();
-$db = $database->getConnection();
-
-$query = "SELECT updated_at FROM markets ORDER BY updated_at DESC LIMIT 1";
-$stmt = $db->prepare($query);
-$stmt->execute();
-$last_update = $stmt->fetchColumn();
-
-if (!$last_update || (time() - strtotime($last_update)) > 300) {
-    updateMarketData();
-}
+$page_title = 'GlobalBorsa - Financial Markets';
 
 // Get current category
-$category = $_GET['group'] ?? 'crypto_tl';
-$valid_categories = ['crypto_tl', 'crypto_usd', 'forex'];
+$category = $_GET['group'] ?? 'us_stocks';
+$valid_categories = array_keys(getFinancialCategories());
 if (!in_array($category, $valid_categories)) {
-    $category = 'crypto_tl';
+    $category = 'us_stocks';
 }
 
 // Get market data
 $markets = getMarketData($category, 50);
+
+// Update market data if it's been more than 10 minutes (to save API quota)
+$database = new Database();
+$db = $database->getConnection();
+
+$query = "SELECT updated_at FROM markets WHERE category = ? ORDER BY updated_at DESC LIMIT 1";
+$stmt = $db->prepare($query);
+$stmt->execute([$category]);
+$last_update = $stmt->fetchColumn();
+
+if (!$last_update || (time() - strtotime($last_update)) > 600) {
+    // Only update if we have a real API key (not demo)
+    if (TWELVE_DATA_API_KEY !== 'demo') {
+        updateFinancialData($category);
+        // Refresh markets after update
+        $markets = getMarketData($category, 50);
+    }
+}
 
 // Search functionality
 $search = $_GET['search'] ?? '';
@@ -42,33 +47,35 @@ include 'includes/header.php';
     <!-- Page Header -->
     <div class="row mb-4">
         <div class="col-md-8">
-            <h1 class="h3 mb-0"><?php echo t('crypto_markets'); ?></h1>
-            <p class="text-muted"><?php echo getCurrentLang() == 'tr' ? 'Anlık kripto para takibi' : 'Real-time cryptocurrency tracking'; ?></p>
+            <h1 class="h3 mb-0"><?php echo getFinancialCategories()[$category] ?? 'Financial Markets'; ?></h1>
+            <p class="text-muted">
+                <?php echo getCurrentLang() == 'tr' ? 'Canlı finansal piyasa verileri' : 'Live financial market data'; ?>
+            </p>
         </div>
         <div class="col-md-4">
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="<?php echo t('search_markets'); ?>" 
+                <input type="text" class="form-control" placeholder="<?php echo getCurrentLang() == 'tr' ? 'Enstrüman ara...' : 'Search instruments...'; ?>" 
                        value="<?php echo htmlspecialchars($search); ?>" id="marketSearch">
             </div>
         </div>
     </div>
     
-    <!-- Market Tabs -->
-    <ul class="nav nav-tabs market-tabs">
-        <li class="nav-item">
-            <a class="nav-link <?php echo $category == 'crypto_tl' ? 'active' : ''; ?>" 
-               href="?group=crypto_tl">TL</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?php echo $category == 'crypto_usd' ? 'active' : ''; ?>" 
-               href="?group=crypto_usd">USDT</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link <?php echo $category == 'forex' ? 'active' : ''; ?>" 
-               href="?group=forex">FOREX</a>
-        </li>
-    </ul>
+    <!-- Financial Categories Tabs -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="nav nav-pills nav-justified bg-light rounded p-2">
+                <?php foreach (getFinancialCategories() as $cat_key => $cat_name): ?>
+                <div class="nav-item">
+                    <a class="nav-link <?php echo $category == $cat_key ? 'active' : ''; ?>" 
+                       href="?group=<?php echo $cat_key; ?>">
+                        <small><?php echo $cat_name; ?></small>
+                    </a>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
     
     <!-- Market Table -->
     <div class="card border-0 shadow-sm">

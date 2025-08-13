@@ -1,10 +1,12 @@
 <?php
-// API Keys for external services
-define('COINGECKO_API_URL', 'https://api.coingecko.com/api/v3');
-define('ALPHA_VANTAGE_API_KEY', 'demo'); // Replace with real API key
+// Financial Data API Keys
+define('TWELVE_DATA_API_KEY', 'demo'); // Free: 800 requests/day - Replace with real API key
+define('TWELVE_DATA_API_URL', 'https://api.twelvedata.com');
+
+define('ALPHA_VANTAGE_API_KEY', 'demo'); // Backup API - Replace with real API key  
 define('ALPHA_VANTAGE_API_URL', 'https://www.alphavantage.co/query');
 
-// Papara API configuration (demo)
+// Payment API configuration (demo)
 define('PAPARA_API_KEY', 'demo_key');
 define('PAPARA_API_URL', 'https://merchant-api.papara.com');
 

@@ -1,11 +1,10 @@
 <?php
 require_once 'includes/functions.php';
-debugLocation(); // Debug test
 
 $page_title = 'GlobalBorsa - Türkiye\'nin En Güvenilir Kripto Borsası';
 
-// Get some sample market data for display
-$markets = getMarketData('crypto_tl', 6);
+// Get some sample market data for display  
+$markets = getMarketData('us_stocks', 6);
 ?>
 
 <!DOCTYPE html>

@@ -26,11 +26,6 @@ function requireLogin() {
     }
 }
 
-// DEBUG: Test function to check what's happening
-function debugLocation() {
-    echo "<!-- DEBUG: Current file: " . basename($_SERVER['PHP_SELF']) . " -->";
-    echo "<!-- DEBUG: Functions loaded successfully -->";
-}
 
 // Redirect if not admin
 function requireAdmin() {
@@ -100,14 +95,32 @@ function updateUserBalance($user_id, $currency, $amount, $operation = 'add') {
     return $stmt->execute([$amount, $user_id]);
 }
 
-// Fetch market data from CoinGecko API
-function fetchCryptoData() {
-    $url = COINGECKO_API_URL . '/coins/markets?vs_currency=try&order=market_cap_desc&per_page=50&page=1&sparkline=false&price_change_percentage=24h';
+// Financial market categories
+function getFinancialCategories() {
+    return [
+        'us_stocks' => 'ABD Hisse Senetleri',
+        'eu_stocks' => 'Avrupa Hisse Senetleri', 
+        'world_stocks' => 'Dünya Hisse Senetleri',
+        'crypto' => 'Kripto Para',
+        'commodities' => 'Emtialar',
+        'forex_major' => 'Forex Majör Çiftler',
+        'forex_minor' => 'Forex Minör Çiftler',
+        'forex_exotic' => 'Forex Egzotik Çiftler',
+        'indices' => 'World Indices'
+    ];
+}
+
+// Fetch financial data from Twelve Data API
+function fetchFinancialData($symbols, $category) {
+    if (empty($symbols)) return false;
+    
+    $symbolString = implode(',', $symbols);
+    $url = TWELVE_DATA_API_URL . "/quote?symbol={$symbolString}&apikey=" . TWELVE_DATA_API_KEY;
     
     $context = stream_context_create([
         'http' => [
-            'timeout' => 10,
-            'user_agent' => 'GlobalBorsa/1.0'
+            'timeout' => 15,
+            'user_agent' => 'GlobalBorsa/2.0'
         ]
     ]);
     
@@ -117,33 +130,65 @@ function fetchCryptoData() {
         return false;
     }
     
-    return json_decode($response, true);
+    $data = json_decode($response, true);
+    
+    // Handle single symbol vs multiple symbols response
+    if (count($symbols) == 1) {
+        return [$data];
+    }
+    
+    return $data;
 }
 
-// Update market data in database
-function updateMarketData() {
-    $cryptoData = fetchCryptoData();
+// Get predefined symbols for each category
+function getCategorySymbols($category) {
+    $symbols = [
+        'us_stocks' => ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'META', 'NVDA', 'JPM', 'JNJ', 'V', 'WMT', 'PG', 'UNH', 'DIS', 'HD', 'PYPL', 'BAC', 'ADBE', 'CRM', 'NFLX'],
+        'eu_stocks' => ['SAP', 'ASML', 'LVMH', 'NVO', 'NESN', 'ROG', 'AZN', 'RDSA', 'TM', 'SHEL'],
+        'world_stocks' => ['TSM', 'BABA', 'TCEHY', 'BIDU', 'NIO', 'SONY', 'TM', 'SNY', 'ING', 'CS'],
+        'crypto' => ['BTC/USD', 'ETH/USD', 'BNB/USD', 'ADA/USD', 'SOL/USD', 'XRP/USD', 'DOT/USD', 'DOGE/USD', 'AVAX/USD', 'MATIC/USD'],
+        'commodities' => ['XAUUSD', 'XAGUSD', 'USOIL', 'UKOIL', 'NATGAS', 'COPPER', 'WHEAT', 'CORN', 'SUGAR', 'COFFEE'],
+        'forex_major' => ['EUR/USD', 'GBP/USD', 'USD/JPY', 'USD/CHF', 'AUD/USD', 'USD/CAD', 'NZD/USD', 'EUR/JPY'],
+        'forex_minor' => ['EUR/GBP', 'GBP/JPY', 'EUR/CHF', 'AUD/JPY', 'GBP/CHF', 'EUR/AUD', 'CAD/JPY', 'AUD/CAD', 'NZD/JPY', 'CHF/JPY'],
+        'forex_exotic' => ['USD/TRY', 'EUR/TRY', 'GBP/TRY', 'USD/SEK', 'USD/NOK', 'USD/PLN', 'EUR/SEK', 'USD/ZAR', 'USD/MXN', 'USD/HUF'],
+        'indices' => ['SPX', 'IXIC', 'DJI', 'RUT', 'VIX', 'DAX', 'FTSE', 'CAC', 'NIK', 'HSI']
+    ];
     
-    if (!$cryptoData) {
+    return $symbols[$category] ?? [];
+}
+
+// Update financial market data in database
+function updateFinancialData($category = 'us_stocks') {
+    $symbols = getCategorySymbols($category);
+    
+    if (empty($symbols)) {
+        return false;
+    }
+    
+    $financialData = fetchFinancialData($symbols, $category);
+    
+    if (!$financialData) {
         return false;
     }
     
     $database = new Database();
     $db = $database->getConnection();
     
-    foreach ($cryptoData as $coin) {
-        $symbol = strtoupper($coin['symbol']) . '_TL';
-        $name = $coin['name'];
-        $price = $coin['current_price'];
-        $change_24h = $coin['price_change_percentage_24h'] ?? 0;
-        $volume_24h = $coin['total_volume'] ?? 0;
-        $high_24h = $coin['high_24h'] ?? $price;
-        $low_24h = $coin['low_24h'] ?? $price;
-        $market_cap = $coin['market_cap'] ?? 0;
-        $logo_url = $coin['image'] ?? '';
+    foreach ($financialData as $instrument) {
+        if (!isset($instrument['symbol'])) continue;
+        
+        $symbol = $instrument['symbol'];
+        $name = $instrument['name'] ?? $symbol;
+        $price = floatval($instrument['close'] ?? $instrument['price'] ?? 0);
+        $change = floatval($instrument['change'] ?? 0);
+        $change_percent = floatval($instrument['percent_change'] ?? 0);
+        $volume = floatval($instrument['volume'] ?? 0);
+        $high = floatval($instrument['high'] ?? $price);
+        $low = floatval($instrument['low'] ?? $price);
+        $market_cap = floatval($instrument['market_cap'] ?? 0);
         
         $query = "INSERT INTO markets (symbol, name, price, change_24h, volume_24h, high_24h, low_24h, market_cap, category, logo_url) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'crypto_tl', ?) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, '') 
                   ON DUPLICATE KEY UPDATE 
                   price = VALUES(price), 
                   change_24h = VALUES(change_24h), 
@@ -151,29 +196,52 @@ function updateMarketData() {
                   high_24h = VALUES(high_24h), 
                   low_24h = VALUES(low_24h), 
                   market_cap = VALUES(market_cap),
-                  logo_url = VALUES(logo_url),
                   updated_at = CURRENT_TIMESTAMP";
         
         $stmt = $db->prepare($query);
-        $stmt->execute([$symbol, $name, $price, $change_24h, $volume_24h, $high_24h, $low_24h, $market_cap, $logo_url]);
+        $stmt->execute([$symbol, $name, $price, $change_percent, $volume, $high, $low, $market_cap, $category]);
     }
     
     return true;
 }
 
 // Get market data from database
-function getMarketData($category = 'crypto_tl', $limit = 50) {
+function getMarketData($category = 'us_stocks', $limit = 50) {
     $database = new Database();
     $db = $database->getConnection();
     
-    // Convert limit to integer to avoid SQL syntax error
     $limit = (int)$limit;
     
-    $query = "SELECT * FROM markets WHERE category = ? ORDER BY market_cap DESC LIMIT " . $limit;
+    $query = "SELECT * FROM markets WHERE category = ? ORDER BY market_cap DESC, volume_24h DESC LIMIT " . $limit;
     $stmt = $db->prepare($query);
     $stmt->execute([$category]);
     
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Get all market data for multiple categories
+function getAllMarketsData($categories = []) {
+    if (empty($categories)) {
+        $categories = array_keys(getFinancialCategories());
+    }
+    
+    $database = new Database();
+    $db = $database->getConnection();
+    
+    $placeholders = str_repeat('?,', count($categories) - 1) . '?';
+    $query = "SELECT * FROM markets WHERE category IN ($placeholders) ORDER BY category, volume_24h DESC";
+    $stmt = $db->prepare($query);
+    $stmt->execute($categories);
+    
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Group by category
+    $grouped = [];
+    foreach ($results as $market) {
+        $grouped[$market['category']][] = $market;
+    }
+    
+    return $grouped;
 }
 
 // Get single market data
