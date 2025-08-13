@@ -1,3 +1,13 @@
+<?php
+// Don't require login for landing pages
+$current_page = basename($_SERVER['PHP_SELF']);
+$public_pages = ['landing-new.php', 'landing-test.php', 'landing-ornek.html', 'index.php', 'login.php', 'register.php'];
+
+if (!in_array($current_page, $public_pages)) {
+    // Only require login for non-public pages
+    // requireLogin(); // Commented out to allow access to landing pages
+}
+?>
 <!DOCTYPE html>
 <html lang="<?php echo getCurrentLang(); ?>">
 <head>
