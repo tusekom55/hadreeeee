@@ -1172,140 +1172,172 @@ $markets = getMarketData('crypto_tl', 6);
         <div class="slider-progress" id="sliderProgress"></div>
     </section>
 
-    <!-- Coin List Ticker -->
+    <!-- US Stocks Ticker -->
     <section class="coin-ticker" id="coin-ticker">
         <div class="ticker-header">
-            <h2><?php echo getCurrentLang() == 'tr' ? '100\'den fazla kripto paraya kolay erişim' : 'Easy access to over 100 cryptocurrencies'; ?></h2>
+            <h2><?php echo getCurrentLang() == 'tr' ? 'Amerika\'nın en büyük şirketlerine yatırım yapın' : 'Invest in America\'s largest companies'; ?></h2>
         </div>
         <div class="ticker-container">
             <div class="ticker-track">
-                <!-- First set of coins -->
+                <!-- First set of US Stocks -->
                 <div class="coin-item">
-                    <div class="coin-flag">₿</div>
+                    <div class="coin-flag">🍎</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">BTC/TL</div>
-                        <div class="coin-name">Bitcoin</div>
+                        <div class="coin-symbol">AAPL</div>
+                        <div class="coin-name">Apple Inc.</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">Ξ</div>
+                    <div class="coin-flag">🪟</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">ETH/TL</div>
-                        <div class="coin-name">Ethereum</div>
+                        <div class="coin-symbol">MSFT</div>
+                        <div class="coin-name">Microsoft</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🔶</div>
+                    <div class="coin-flag">🔍</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">BNB/TL</div>
-                        <div class="coin-name">Binance Coin</div>
+                        <div class="coin-symbol">GOOGL</div>
+                        <div class="coin-name">Alphabet Inc.</div>
+                    </div>
+                </div>
+                
+                <div class="coin-item">
+                    <div class="coin-flag">📦</div>
+                    <div class="coin-info">
+                        <div class="coin-symbol">AMZN</div>
+                        <div class="coin-name">Amazon</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
                     <div class="coin-flag">⚡</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">SOL/TL</div>
-                        <div class="coin-name">Solana</div>
+                        <div class="coin-symbol">TSLA</div>
+                        <div class="coin-name">Tesla Inc.</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🔵</div>
+                    <div class="coin-flag">📱</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">ADA/TL</div>
-                        <div class="coin-name">Cardano</div>
+                        <div class="coin-symbol">META</div>
+                        <div class="coin-name">Meta Platforms</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🟣</div>
+                    <div class="coin-flag">🎬</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">DOT/TL</div>
-                        <div class="coin-name">Polkadot</div>
+                        <div class="coin-symbol">NFLX</div>
+                        <div class="coin-name">Netflix</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🔗</div>
+                    <div class="coin-flag">💳</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">LINK/TL</div>
-                        <div class="coin-name">Chainlink</div>
+                        <div class="coin-symbol">V</div>
+                        <div class="coin-name">Visa Inc.</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🌙</div>
+                    <div class="coin-flag">🥤</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">LUNA/TL</div>
-                        <div class="coin-name">Terra Luna</div>
+                        <div class="coin-symbol">KO</div>
+                        <div class="coin-name">Coca-Cola</div>
+                    </div>
+                </div>
+                
+                <div class="coin-item">
+                    <div class="coin-flag">🏠</div>
+                    <div class="coin-info">
+                        <div class="coin-symbol">JPM</div>
+                        <div class="coin-name">JPMorgan Chase</div>
                     </div>
                 </div>
                 
                 <!-- Duplicate set for seamless loop -->
                 <div class="coin-item">
-                    <div class="coin-flag">₿</div>
+                    <div class="coin-flag">🍎</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">BTC/TL</div>
-                        <div class="coin-name">Bitcoin</div>
+                        <div class="coin-symbol">AAPL</div>
+                        <div class="coin-name">Apple Inc.</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">Ξ</div>
+                    <div class="coin-flag">🪟</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">ETH/TL</div>
-                        <div class="coin-name">Ethereum</div>
+                        <div class="coin-symbol">MSFT</div>
+                        <div class="coin-name">Microsoft</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🔶</div>
+                    <div class="coin-flag">🔍</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">BNB/TL</div>
-                        <div class="coin-name">Binance Coin</div>
+                        <div class="coin-symbol">GOOGL</div>
+                        <div class="coin-name">Alphabet Inc.</div>
+                    </div>
+                </div>
+                
+                <div class="coin-item">
+                    <div class="coin-flag">📦</div>
+                    <div class="coin-info">
+                        <div class="coin-symbol">AMZN</div>
+                        <div class="coin-name">Amazon</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
                     <div class="coin-flag">⚡</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">SOL/TL</div>
-                        <div class="coin-name">Solana</div>
+                        <div class="coin-symbol">TSLA</div>
+                        <div class="coin-name">Tesla Inc.</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🔵</div>
+                    <div class="coin-flag">📱</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">ADA/TL</div>
-                        <div class="coin-name">Cardano</div>
+                        <div class="coin-symbol">META</div>
+                        <div class="coin-name">Meta Platforms</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🟣</div>
+                    <div class="coin-flag">🎬</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">DOT/TL</div>
-                        <div class="coin-name">Polkadot</div>
+                        <div class="coin-symbol">NFLX</div>
+                        <div class="coin-name">Netflix</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🔗</div>
+                    <div class="coin-flag">💳</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">LINK/TL</div>
-                        <div class="coin-name">Chainlink</div>
+                        <div class="coin-symbol">V</div>
+                        <div class="coin-name">Visa Inc.</div>
                     </div>
                 </div>
                 
                 <div class="coin-item">
-                    <div class="coin-flag">🌙</div>
+                    <div class="coin-flag">🥤</div>
                     <div class="coin-info">
-                        <div class="coin-symbol">LUNA/TL</div>
-                        <div class="coin-name">Terra Luna</div>
+                        <div class="coin-symbol">KO</div>
+                        <div class="coin-name">Coca-Cola</div>
+                    </div>
+                </div>
+                
+                <div class="coin-item">
+                    <div class="coin-flag">🏠</div>
+                    <div class="coin-info">
+                        <div class="coin-symbol">JPM</div>
+                        <div class="coin-name">JPMorgan Chase</div>
                     </div>
                 </div>
             </div>
