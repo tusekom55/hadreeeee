@@ -1,6 +1,6 @@
 <?php
 // Financial Data API Keys
-define('TWELVE_DATA_API_KEY', 'demo'); // Free: 800 requests/day - Replace with real API key
+define('TWELVE_DATA_API_KEY', '7a0311c2af9a48eab8277a4bfe598a30'); // Live API Key - 800 requests/day
 define('TWELVE_DATA_API_URL', 'https://api.twelvedata.com');
 
 define('ALPHA_VANTAGE_API_KEY', 'demo'); // Backup API - Replace with real API key  

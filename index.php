@@ -22,14 +22,14 @@ $stmt = $db->prepare($query);
 $stmt->execute([$category]);
 $last_update = $stmt->fetchColumn();
 
-if (!$last_update || (time() - strtotime($last_update)) > 600) {
-    // Only update if we have a real API key (not demo)
-    if (TWELVE_DATA_API_KEY !== 'demo') {
-        updateFinancialData($category);
-        // Refresh markets after update
-        $markets = getMarketData($category, 50);
-    }
-}
+// OTOMATIK GÜNCELLEME KAPATILDI - Sadece manuel güncelleme
+// Auto update disabled - Manual update only via admin panel
+// if (!$last_update || (time() - strtotime($last_update)) > 600) {
+//     if (TWELVE_DATA_API_KEY !== 'demo') {
+//         updateFinancialData($category);
+//         $markets = getMarketData($category, 50);
+//     }
+// }
 
 // Search functionality
 $search = $_GET['search'] ?? '';
